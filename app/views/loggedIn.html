@@ -1,0 +1,285 @@
+<script type="text/javascript" src="js/helpers/template.js"></script>
+<div ng-controller="LoggedInCtrl" id="completed-top">
+  
+  <nav id="tf-menu" class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" ng-href="/"><img src="img/year_up.png" class="img-responsive" style="height:40px; width:100px;"></a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right" style="margin-right:-10%;">
+            <li>
+                <div class="dropdown" style="margin-top:5%;" ng-show="user.signedIn">
+                  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Welcome!
+                  <span class="caret"></span></button>
+                  <ul class="dropdown-menu">
+                    <li><a style="cursor:pointer;" ng-click="signOut()">SIGN OUT</a></li>
+                  </ul>
+                </div>
+            </li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+      </div><!-- /.container-fluid -->
+    </nav>
+    <div id="tf-completed" ng-show="isAdmin">
+      <div iclass="text-center " style="height:100%;">
+        <div class="overlay">
+          <div class="content" style="">
+            <button type="button" class="btn btn-primary" style="margin:auto; display:block; width:40%; height:100px;">
+                <h1>Automate Matching</h1></button>
+          </div>
+          <div class="content" >
+          </div>
+        </div>
+    </div>
+    </div>
+    <div id="tf-completed" ng-show="!isAdmin">
+    <div id="name-completed" class="text-center " style="height:100%;" ng-show="views.userName">
+        <div class="overlay">
+          <div class="content" style="margin-top:-10%;">
+            <h1 style="display:inline-block;">Welcome! What is your name?</h1> <i ng-click='playSound("name")' style="cursor:pointer; margin-left:5px;display:inline-block;" class="fa fa-microphone fa-2x" aria-hidden="true"></i>
+              <input class="form-control" ng-model="formInfo.name" placeholder="enter full name here" style=" margin: auto; width:50%; height:70px;">
+              <i ng-click="filledOutName()" style="cursor:pointer;" class="fa fa-arrow-right fa-5x" aria-hidden="true"></i>
+          </div>
+          <div class="content" >
+          </div>
+        </div>
+    </div>
+
+    <div id="type-completed" class="text-center " style="height:100%;" ng-show="views.userType">
+        <div class="overlay">
+          <div class="content" style="margin-top:-10%;">
+            <h1>Are you a student or tutor?</h1> 
+              <button class="btn btn-primary " type="button" ng-click='filledOutUserType("student")' style="width:30%; height:100px;"><h1>student</h1></button>
+              <button class="btn btn-primary " type="button" ng-click='filledOutUserType("tutor")' style="width:30%; height:100px;"><h1>tutor</h1></button>
+              <br>
+          </div>
+          <div class="content" >
+          </div>
+        </div>
+    </div>
+
+    <div id="subject-completed" class="text-center " style="height:100%;" ng-show="views.mathAndEnglish">
+        <div class="overlay">
+          <div class="content" style="margin-top:-10%;">
+            <h1>What subjects do you seek help in?</h1> 
+              <button type="button" class="btn btn-primary" ng-model="formInfo.math" uib-btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false" style="width:25%; height:100px;">
+                <h1>Math</h1>
+              </button>
+              <button type="button" class="btn btn-primary" ng-model="formInfo.science" uib-btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false" style="width:25%; height:100px;">
+                <h1>Science</h1>
+              </button>
+              <button type="button" class="btn btn-primary" ng-model="formInfo.computerScience" uib-btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false" style="width:25%; height:100px;">
+                <h1>Software</h1>
+              </button>
+              <br>
+             
+              <i ng-click="filledOutMathAndEnglish()" style="cursor:pointer;" class="fa fa-arrow-right fa-5x" aria-hidden="true"></i>
+             
+          </div>
+          <div class="content" >
+          </div>
+        </div>
+    </div>
+
+    <div id="type-completed" class="text-center " style="height:100%;" ng-show="views.userInterests">
+        <div class="overlay">
+          <div class="content" style="margin-top:-10%;">
+              <div class="btn-group" uib-dropdown is-open="status.isopen">
+                <button id="single-button" type="button" class="btn btn-primary" uib-dropdown-toggle ng-disabled="disabled" style="height:60px; ">
+                  {{learner}} <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                  <li role="menuitem"><a href="" ng-click='changeLearner("Fast")'>Fast</a></li>
+                  <li role="menuitem"><a href="" ng-click='changeLearner("Medium")'>Medium</a></li>
+                  <li role="menuitem"><a href="" ng-click='changeLearner("Slow")'>Slow</a></li>
+                </ul>
+              </div>
+              <div class="btn-group" uib-dropdown is-open="status2.isopen">
+                <button id="single-button" type="button" class="btn btn-primary" uib-dropdown-toggle ng-disabled="disabled" style="height:60px; ">
+                  {{learnStyle}} <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                  <li role="menuitem"><a href="" ng-click='changeStyle("Physical")'>Physical</a></li>
+                  <li role="menuitem"><a href="" ng-click='changeStyle("Logical")'>Logical</a></li>
+                  <li role="menuitem"><a href="" ng-click='changeStyle("Social")'>Social</a></li>
+                  <li role="menuitem"><a href="" ng-click='changeStyle("Verbal")'>Verbal</a></li>
+                  <li role="menuitem"><a href="" ng-click='changeStyle("Visual")'>Visual</a></li>
+                </ul>
+              </div>
+              <div class="btn-group" uib-dropdown is-open="status3.isopen">
+                <button id="single-button" type="button" class="btn btn-primary" uib-dropdown-toggle ng-disabled="disabled" style="height:60px; ">
+                  {{personality}} <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                  <li role="menuitem"><a href="" ng-click='changePersonality("Obliger")'>Obliger</a></li>
+                  <li role="menuitem"><a href="" ng-click='changePersonality("Rebel")'>Rebel</a></li>
+                  <li role="menuitem"><a href="" ng-click='changePersonality("Upholder")'>Upholder</a></li>
+                  <li role="menuitem"><a href="" ng-click='changePersonality("Questioner")'>Questioner</a></li>
+                </ul>
+              </div>
+              <br>
+              <i ng-click="filledOutInterests()" style="cursor:pointer;" class="fa fa-arrow-right fa-5x" aria-hidden="true"></i>
+
+              <br>
+          </div>
+          <div class="content" >
+          </div>
+        </div>
+    </div>
+
+    <div id="skype-completed" class="text-center " style="height:100%;" ng-show="views.skype">
+        <div class="overlay">
+          <div class="content" style="margin-top:-10%;">
+            <h1>Are you willing to be tutored through Skype?</h1> 
+            <h5 style="color: red;">NOTE: Selecting 'NO' will limit available tutors for you and we may not be able to find one for you.</h5> 
+              <button class="btn btn-primary " type="button" ng-click="filledOutSkype(true)" style="width:30%; height:100px;"><h1>Yes</h1></button>
+              <button class="btn btn-primary " type="button" ng-click="filledOutSkype(false)" style="width:30%; height:100px;"><h1>No</h1></button>
+          </div>
+          <div class="content" >
+          </div>
+        </div>
+    </div>
+
+    <div id="location-completed" class="text-center " style="height:100%;" ng-show="views.userLocation">
+        <div class="overlay">
+          <div class="content" style="margin-top:-10%;">
+            <h1>Where are you located?</h1> 
+            <input class="form-control" ng-model="formInfo.city" placeholder="city" style="display:inline-block; margin: auto; width:30%; height:70px;">
+            <input class="form-control" ng-model="formInfo.state" placeholder="state" style="display:inline-block; margin: auto; width:10%; height:70px;" maxlength="2">
+            <br>
+           
+              <i ng-click="filledOutLocation()" style="cursor:pointer;" class="fa fa-arrow-right fa-5x" aria-hidden="true"></i>
+            
+          </div>
+          <div class="content" >
+          </div>
+        </div>
+    </div>
+
+    <div id="schedule-completed" class="text-center " style="height:100%;" ng-show="views.schedule">
+        <div class="overlay">
+          <div class="content" style="margin-top:-10%;">
+            <h1>What is your availability on {{day}}?</h1> 
+            <div>
+              <button type="button" class="btn btn-primary" ng-model="hours.t00" uib-btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false" style="width:6%; height:50px;">
+                  12:00 AM
+                </button>
+              <button type="button" class="btn btn-primary" ng-model="hours.t01" uib-btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false" style="width:6%; height:50px;">
+                 1:00 AM
+                </button>
+                <button type="button" class="btn btn-primary" ng-model="hours.t02" uib-btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false" style="width:6%; height:50px;">
+                  2:00 AM
+                </button>
+                <button type="button" class="btn btn-primary" ng-model="hours.t03" uib-btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false" style="width:6%; height:50px;">
+                  3:00 AM
+                </button>
+                <button type="button" class="btn btn-primary" ng-model="hours.t04" uib-btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false" style="width:6%; height:50px;">
+                  4:00 AM
+                </button>
+                <button type="button" class="btn btn-primary" ng-model="hours.t05" uib-btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false" style="width:6%; height:50px;">
+                  5:00 AM
+                </button>
+                <button type="button" class="btn btn-primary" ng-model="hours.t06" uib-btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false" style="width:6%; height:50px;">
+                  6:00 AM
+                </button>
+                <button type="button" class="btn btn-primary" ng-model="hours.t07" uib-btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false" style="width:6%; height:50px;">
+                  7:00 AM
+                </button>
+                <button type="button" class="btn btn-primary" ng-model="hours.t08" uib-btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false" style="width:6%; height:50px;">
+                  8:00 AM
+                </button>
+                <button type="button" class="btn btn-primary" ng-model="hours.t09" uib-btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false" style="width:6%; height:50px;">
+                  9:00 AM
+                </button>
+                <button type="button" class="btn btn-primary" ng-model="hours.t10" uib-btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false" style="width:6%; height:50px;">
+                  10:00 AM
+                </button>
+                <button type="button" class="btn btn-primary" ng-model="hours.t11" uib-btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false" style="width:6%; height:50px;">
+                  11:00 AM
+                </button>
+            </div>
+            <div>
+              <button type="button" class="btn btn-primary" ng-model="hours.t12" uib-btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false" style="width:6%; height:50px;">
+                  12:00 PM
+                </button>
+              <button type="button" class="btn btn-primary" ng-model="hours.t13" uib-btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false" style="width:6%; height:50px;">
+                 1:00 PM
+                </button>
+                <button type="button" class="btn btn-primary" ng-model="hours.t14" uib-btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false" style="width:6%; height:50px;">
+                  2:00 PM
+                </button>
+                <button type="button" class="btn btn-primary" ng-model="hours.t15" uib-btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false" style="width:6%; height:50px;">
+                  3:00 PM
+                </button>
+                <button type="button" class="btn btn-primary" ng-model="hours.t16" uib-btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false" style="width:6%; height:50px;">
+                  4:00 PM
+                </button>
+                <button type="button" class="btn btn-primary" ng-model="hours.t17" uib-btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false" style="width:6%; height:50px;">
+                  5:00 PM
+                </button>
+                <button type="button" class="btn btn-primary" ng-model="hours.t18" uib-btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false" style="width:6%; height:50px;">
+                  6:00 PM
+                </button>
+                <button type="button" class="btn btn-primary" ng-model="hours.t19" uib-btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false" style="width:6%; height:50px;">
+                  7:00 PM
+                </button>
+                <button type="button" class="btn btn-primary" ng-model="hours.t20" uib-btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false" style="width:6%; height:50px;">
+                  8:00 PM
+                </button>
+                <button type="button" class="btn btn-primary" ng-model="hours.t21" uib-btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false" style="width:6%; height:50px;">
+                  9:00 PM
+                </button>
+                <button type="button" class="btn btn-primary" ng-model="hours.t22" uib-btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false" style="width:6%; height:50px;">
+                  10:00 PM
+                </button>
+                <button type="button" class="btn btn-primary" ng-model="hours.t23" uib-btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false" style="width:6%; height:50px;">
+                  11:00 PM
+                </button>
+            </div>
+              <i style="cursor:pointer;"class="fa fa-arrow-right fa-5x" ng-click="filledOutSchedule()" aria-hidden="true"></i>
+          </div>
+          <div class="content" >
+          </div>
+        </div>
+    </div>
+
+    <div id="finished-completed" class="text-center " style="height:100%;" ng-show="views.finished">
+        <div class="overlay">
+          <div class="content" style="margin-top:-10%;">
+            <h1>You have completed your survey!</h1> 
+            <h3>You will recieve an email notification when your profile gets matched.</h3>
+          </div>
+          <div class="content" >
+          </div>
+        </div>
+    </div>
+  </div>
+  </div>
+
+
+    <nav id="footer">
+        <div class="container">
+            <div class="pull-left fnav">
+                <p>Developed by Microsoft Interns</p>
+            </div>
+            <div class="pull-right fnav">
+                <ul class="footer-social">
+                    <li><a href="https://www.facebook.com/yearup"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="https://twitter.com/yearup"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="https://www.linkedin.com/company/year-up"><i class="fa fa-linkedin"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>

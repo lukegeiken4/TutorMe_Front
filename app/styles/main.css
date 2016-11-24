@@ -1,0 +1,61 @@
+.test {
+	color:blue;
+}
+
+.header {
+      color: white;
+      text-align: center;
+      font-size: 60px;
+      background-color:#DB0066;
+}
+
+.leftSection {
+	background-color:#00b3b3;
+ margin-left: 110px;
+ margin-right: 50px;
+	width:250px;
+    float:left;
+    padding:10px;
+ 
+}
+.subheader {
+  color: #DB0066;
+  text-align: center;  
+  font-size: 30px;
+  background-color:#ffff00;
+}
+
+
+.button {
+	style:width:400px; 
+	height:50px; 
+	background-color:orange;
+	border-radius: 12px;
+}
+.body{
+  background-color: #ffff00;
+}
+.cityDisplay {
+ text-align: center; 
+ color: white;
+ background-color:#00b3b3;
+ font-size: 18px;
+}
+
+IMG.image {
+  display: block;
+  margin-left: 50px;
+  margin-right: 25px;
+}
+
+.photoList{
+ width:100%;
+ display: inline-block;
+ overflow: hidden;
+ position: relative;
+ text-align: center;
+ vertical-align: top;
+}
+
+
+

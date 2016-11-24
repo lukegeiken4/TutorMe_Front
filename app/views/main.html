@@ -1,0 +1,139 @@
+<script type="text/javascript" src="js/helpers/template.js"></script>
+<div ng-controller="MainCtrl" id="main-top">
+	<script type="text/ng-template" id="signInModalContent.html">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Sign in or Create Account</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+            <input class="form-control" ng-model="unknownUser.email" id="sign-in-email" placeholder="email" rows="3">
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" ng-model="unknownUser.password" id="sign-in-password" placeholder="password">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="close()">Close</button>
+        <button type="button" class="btn btn-primary" ng-click="signIn()">Sign In or Create Account</button>
+      </div>
+    </script>
+  <nav id="tf-menu" class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" ng-href="/"><img src="img/year_up.png" class="img-responsive" style="height:40px; width:100px;"></a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right" style="margin-right:-3%; margin-top: 1%;">
+            <li><a href="#tf-home" class="page-scroll">TutorMe</a></li>
+            <li><a href="#tf-current" class="page-scroll">students</a></li>
+            <li><a href="#tf-about" class="page-scroll">tutors</a></li>
+            <li><a href="#tf-contact" class="page-scroll">contact</a></li>
+            <li>
+                <div style="margin-top:5%;">
+                  <button class="btn btn-primary dropdown-toggle" type="button" ng-click="openSignInModal()">SIGN IN</button>
+                </div>
+            </li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
+    <!-- Home Page
+    ==========================================-->
+    <div id="tf-home" class="text-center">
+        <div class="overlay">
+            <div class="content">
+                <h1>“It’s just <strong><span class="color">one year</span></strong> of your life to the career of your dreams.”</h1>
+                <p class="lead">Manuali’i Misa, Year Up Graduate</strong></p>
+                <a href="#tf-current" class="fa fa-angle-down page-scroll"></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Current Project
+    ==========================================-->
+    <div id="tf-current" class="text-center">
+        <div class="container">
+            <h1><strong><span class="color">TutorMe</span></strong> for Students</h1>
+            <div class="col-md-10 col-md-offset-1" style="text-align:left;">
+                <h3>TutorMe is an application used by volunteer tutors and students to match for outside tutoring in order to help YearUp students.</h3> 
+
+                    <h5>Tutoring can be requested for either English or Math subject areas and can help you get the extra help students need outside of the YearUp courses. You can also use TutorMe to accelerate and move ahead in your classes if you so choose. TutorMe is optional and free; it is for you to add a more personal touch to your learning and to help you in the specific areas that you need the most. Choose the best method of instruction for you, face-to-face or skype (availability for face-to-face may vary based on region). Select your availability on a weekly basis so that we can find tutors who can work with your schedule.</h5>
+
+                    <h5>Fill in the personality/learning style assessment! Tutorme uses an intelligent algorithm to optimally match you up with a tutor who follows your learning style and personality as closely as possible.</h5>
+
+                <button class="btn btn-primary dropdown-toggle" type="button" ng-click="openSignInModal()">Get Started!</button>
+
+       
+            </div>
+        </div>
+    </div>
+
+    <!-- About Us
+    ==========================================-->
+    <div id="tf-about" class="text-center">
+        <div class="overlay">
+            <div class="container">
+                <h1><strong><span class="color">TutorMe</span></strong> for Tutors</h1>
+                <div class="col-md-10 col-md-offset-1" style="text-align:right;">
+                    <h3>TutorMe is an application used by volunteer tutors and students to match for outside tutoring in order to help YearUp students.</h3> 
+
+                    <h5>Tutoring can be requested for either English or Math subject areas and can help you get the extra help students need outside of the YearUp courses. You can also use TutorMe to accelerate and move ahead in your classes if you so choose. TutorMe is optional and free; it is for you to add a more personal touch to your learning and to help you in the specific areas that you need the most. Choose the best method of instruction for you, face-to-face or skype (availability for face-to-face may vary based on region). Select your availability on a weekly basis so that we can find tutors who can work with your schedule.</h5>
+
+                    <h5>Fill in the personality/learning style assessment! Tutorme uses an intelligent algorithm to optimally match you up with a tutor who follows your learning style and personality as closely as possible.</h5>
+
+                    <button class="btn btn-primary dropdown-toggle" type="button" ng-click="openSignInModal()">Get Started!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Contact Section
+    ==========================================-->
+    <div id="tf-contact" class="text-center">
+        <div class="container">
+            <h1>Contact</h1>
+            <div class="col-md-8 col-md-offset-2">
+                    <div class="section-title center">
+                        <h3><a href="http://www.yearup.org/about-us/contact-us/">Click to Contact by City<a></h3>
+                        <h3>(855) YEARUP1</h3>
+                        <div class="line">
+                            <hr>
+                        </div>
+                        <div class="clearfix"></div>
+                        <small><em></em></small>            
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <nav id="footer">
+        <div class="container">
+            <div class="pull-left fnav">
+                <p style="color: white;">Developed by Microsoft Interns</p>
+            </div>
+            <div class="pull-right fnav">
+                <ul class="footer-social">
+                    <li><a href="https://www.facebook.com/yearup"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="https://twitter.com/yearup"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="https://www.linkedin.com/company/year-up"><i class="fa fa-linkedin"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
